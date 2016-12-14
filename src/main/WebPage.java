@@ -52,7 +52,7 @@ public class WebPage {
 		if(o == null) result = false;
 		else{
 			WebPage webPage = (WebPage) o;
-			if(this.url == webPage.url)
+			if(this.url == webPage.url && this.mentionedIn.equals(webPage.mentionedIn))
 				result = true;
 			else
 				result = false;
