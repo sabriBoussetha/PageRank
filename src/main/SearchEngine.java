@@ -82,8 +82,7 @@ public class SearchEngine {
 					else{
 						webPages.get(url2).addToMentionedIn(webPageFrom);
 					}
-				}
-				
+				}				
 			}
 			System.out.println(webPages.size());
 		} catch (IOException e) {
@@ -91,4 +90,19 @@ public class SearchEngine {
 		}
 	}
 
+	/**
+	 * 
+	 */
+	public void readKeyWords(){
+		keyWords = new MyDataStructure(100, 3);
+		String currentString;
+		try(BufferedReader br = new BufferedReader(new FileReader(keyWordsFileName))){
+			while((currentString = br.readLine()) != null){
+				System.out.println(currentString.split("^\t")[0]);
+				
+			}
+		}catch (IOException e){
+			e.printStackTrace();
+		}
+	}
 }
