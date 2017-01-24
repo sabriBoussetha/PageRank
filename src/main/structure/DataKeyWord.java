@@ -1,16 +1,29 @@
 package main.structure;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class DataKeyWord<T extends GenericData<E>,E>{
+public class DataKeyWord extends GenericData<String>{
 
+    public DataKeyWord(String data) {
+		super(data);
+		mentionedInPages = new ArrayList<>();
+		keyWord = data;
+	}
+
+	/**
+     *
+     */
+    String keyWord;
     /**
      *
      */
-    T keyWord;
+    private List<String> mentionedInPages;
+    
     /**
-     *
+     * 
      */
-    List<T> mentionedInPages;
-
+    public List<String> getWebpages(){
+    	return mentionedInPages;
+    }
 }

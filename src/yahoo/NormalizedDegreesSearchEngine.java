@@ -15,11 +15,15 @@ public class NormalizedDegreesSearchEngine extends SearchEngine{
 
     @Override
     public void computeRank(List<WebPage> webPages, List<String> keyWords) {
-
-    }
-
-    @Override
-    public List<WebPage> search(List<String> keyWords) {
-        return null;
+    	double rank = 0;
+    	for (WebPage webPage : webPages) {
+			List<WebPage> inputArc = webPage.getInputArc();
+			for (WebPage inputArcWebPage : inputArc) {
+				WebPage page = this.getWebpages().get(inputArcWebPage.url);
+				rank += ((double)1/(double)page.getOutputArc().size());
+			}
+			webPage.setRank(rank);
+			rank = 0;
+		}
     }
 }

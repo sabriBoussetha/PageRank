@@ -38,7 +38,7 @@ public class GenericData<T> implements Comparable<GenericData<T>>{
         boolean equal = false;
         if(o==null)equal = false;
         else{
-            GenericData<T> oData = (GenericData<T>)o;
+			GenericData<T> oData = (GenericData<T>)o;
             if(this.cle.equals(oData.cle))
                 equal = true;
             else

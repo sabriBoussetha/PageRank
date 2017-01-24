@@ -16,17 +16,17 @@ public class WebPage {
     /**
      * rank of page after classification
      */
-    public double rank;
+    private double rank;
 
     /**
      * list of WebPages that mentioned this web page
      */
-    List<WebPage> mentionedIn;
+    List<WebPage> inputArc;
 
     /**
      * list of WebPages accessible from this web page
      */
-    List<WebPage> linksToPages;
+    List<WebPage> outputArc;
 
     /**
      *
@@ -34,18 +34,68 @@ public class WebPage {
      */
     public WebPage(String url){
         this.url = url;
-        mentionedIn = new ArrayList<WebPage>();
-        linksToPages = new ArrayList<WebPage>();
+        inputArc = new ArrayList<WebPage>();
+        outputArc = new ArrayList<WebPage>();
     }
 
     /**
-     *
+     * 
+     * @param webPage
      */
     public void addToMentionedIn(WebPage webPage){
-        if(!mentionedIn.contains(webPage) && webPage != null)
-            mentionedIn.add(webPage);
+        if(!inputArc.contains(webPage) && webPage != null)
+            inputArc.add(webPage);
+    }
+    
+    /**
+     * 
+     * @param webPage
+     */
+    public void addToOutputArc(WebPage webPage){
+    	if(!outputArc.contains(webPage) && webPage != null)
+            outputArc.add(webPage);
     }
 
+    /**
+     * 
+     */
+    public List<WebPage> getInputArc(){
+    	return inputArc;
+    }
+    
+    /**
+     * 
+     */
+    public List<WebPage> getOutputArc(){
+    	return outputArc;
+    }
+    
+    /**
+     * 
+     * @param inputArc
+     */
+    public void setInputArc(List<WebPage> inputArc){
+    	this.inputArc = inputArc;
+    }
+    
+    /**
+     * 
+     * @param outputArc
+     */
+    public void setOutputArc(List<WebPage> outputArc){
+    	this.outputArc = outputArc;
+    }
+    
+    /**
+     * 
+     */
+    public double getRank(){
+    	return rank;
+    }
+    
+    public void setRank(double rank){
+    	this.rank = rank;
+    }
     /**
      *
      */
@@ -55,8 +105,10 @@ public class WebPage {
         if(o == null) result = false;
         else{
             WebPage webPage = (WebPage) o;
-            if(this.url.equals(webPage.url) && this.mentionedIn.equals(webPage.mentionedIn))
-                result = true;
+            if(this.url.equals(webPage.url)) //&& this.mentionedIn.equals(webPage.mentionedIn)){
+            	//if(this.linksToPages.equals(webPage.linksToPages))
+            		result = true;
+            //}
             else
                 result = false;
         }
